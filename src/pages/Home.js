@@ -1,8 +1,8 @@
 import React from 'react';
 
 // TODO: Replace placeholder values with actual student and lab identifiers
-const STUDENT_ID = 'STUDENT_ID_PLACEHOLDER';
-const LAB_ID = 'LAB_ID_PLACEHOLDER';
+const STUDENT_ID = '23WH1A0541';
+const LAB_ID = 'FSDLAB2';
 
 function Home() {
   return (
