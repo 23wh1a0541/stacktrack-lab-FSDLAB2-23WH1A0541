@@ -23,7 +23,40 @@ function QuestionComponent() {
   useEffect(() => {
     fetchTasks();
   }, []);  
-  
+
+  const handleDelete = async(id) => {
+    try {
+      setTasks((preTasks) => preTasks.filter((task) => task.id !== id));
+
+      const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
+        method: 'DELETE',
+      }); 
+
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.error("Error deleting task:", error);
+      fetchTasks();
+    }
+  };  
+  return (
+    <div>
+      <h1>Task List</h1>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {tasks.map((task) => (
+            <li key={task.id}>
+              {task.title}
+              <button onClick={() => handleDelete(task.id)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+
 
 
   // TODO: Implement data fetching inside a useEffect hook
